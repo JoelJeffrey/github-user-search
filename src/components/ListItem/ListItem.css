@@ -1,0 +1,21 @@
+.repo {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #fff;
+  margin-bottom: 15px;
+  background: #fff;
+  color: #222;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.repo:last-child {
+  margin-bottom: 0;
+}
+
+.repo-name {
+}
+
+.repo-stars {
+}

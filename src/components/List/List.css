@@ -1,0 +1,11 @@
+.list {
+  max-width: 700px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.list-title {
+  margin-top: 60px;
+  text-align: center;
+}
