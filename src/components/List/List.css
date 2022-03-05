@@ -3,9 +3,19 @@
   margin: 0 auto;
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+
+@media (min-width: 786px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .list-title {
-  margin-top: 60px;
+  margin-top: 30px;
+  color: #e85a4f;
   text-align: center;
 }

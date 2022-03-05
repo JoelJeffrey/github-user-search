@@ -11,11 +11,15 @@ function App() {
   const [error, setError] = useState(null)
 
   function handleOnSearch() {
-    // get repos only owned by the searched user, get 100 repos (github api max value)
-    setIsFetching(true)
     setError(null)
     setUserRepos([])
     setUsername("")
+    if (searchValue.length < 4) {
+      setError("minimum of 4 characters required")
+      return
+    }
+    setIsFetching(true)
+    // get repos only owned by the searched user, get 100 repos (github api max value)
     fetch(
       `https://api.github.com/users/${searchValue}/repos?type=owner&per_page=100`
     )
@@ -62,9 +66,14 @@ function App() {
           </button>
         </div>
         <div className="main-content">
-          {error && <span>{error}</span>}
+          {error && <span className="error">{error}</span>}
           {isFetching ? (
-            <span>Loading Icon Here</span>
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           ) : (
             <List username={username} userRepos={userRepos} />
           )}

@@ -1,21 +1,20 @@
 .repo {
   width: 100%;
   padding: 10px 15px;
-  border: 1px solid #fff;
+  box-shadow: 1px 2px 0 #8e8d8a;
   margin-bottom: 15px;
-  background: #fff;
-  color: #222;
+  background: #e98074;
+  color: #fff;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
+  grid-gap: 15px;
   align-items: center;
-}
-
-.repo:last-child {
-  margin-bottom: 0;
 }
 
 .repo-name {
 }
 
 .repo-stars {
+  justify-self: end;
+  /* font-size: 16px; */
 }
