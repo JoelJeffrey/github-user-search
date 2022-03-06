@@ -12,14 +12,14 @@ function App() {
 
   function handleOnSearch() {
     setError(null)
-    // no reason to call api again when users repos are already fetched
-    if (searchValue.toLowerCase() === username.toLowerCase()) {
-      setError("already displaying this user's repositories")
-      return
-    }
     // using 4 characters because that's githubs minimum username length
     if (searchValue.length < 4) {
       setError("minimum of 4 characters required")
+      return
+    }
+    // no reason to call api again when users repos are already fetched
+    if (searchValue.toLowerCase() === username.toLowerCase()) {
+      setError("already displaying this user's repositories")
       return
     }
     setUserRepos([])
@@ -33,7 +33,7 @@ function App() {
         if (response.ok) {
           return response.json()
         } else {
-          throw "error fetching users repositories"
+          throw Error("error fetching users repositories")
         }
       })
       .then((data) => {
@@ -43,7 +43,7 @@ function App() {
         setUsername(searchValue)
       })
       .catch((error) => {
-        setError(error)
+        setError(error.message)
       })
       .finally(() => {
         setIsFetching(false)
@@ -63,6 +63,7 @@ function App() {
             type="input"
             placeholder="username..."
             value={searchValue}
+            onKeyDown={(e) => e.key === "Enter" && handleOnSearch()}
             onChange={(e) => setSearchValue(e.currentTarget.value)}
           />
           <button
@@ -75,17 +76,20 @@ function App() {
           </button>
         </div>
         <div className="main-content">
-          {error && <span className="error">{error}</span>}
-          {isFetching ? (
+          {error && (
+            <p role="alert" className="error">
+              {error}
+            </p>
+          )}
+          {isFetching && (
             <div className="lds-ring">
               <div></div>
               <div></div>
               <div></div>
               <div></div>
             </div>
-          ) : (
-            <List username={username} userRepos={userRepos} />
           )}
+          {username && <List username={username} userRepos={userRepos} />}
         </div>
       </main>
     </div>
