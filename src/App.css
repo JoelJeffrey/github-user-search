@@ -10,15 +10,9 @@
 }
 
 .App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   font-size: calc(10px + 2vmin);
   color: #e85a4f;
-}
-
-.main {
 }
 
 .main-content {
@@ -41,7 +35,6 @@
   width: 350px;
   border: none;
   font-size: 16px;
-  /* border-bottom: 5px solid #e85a4f; */
   color: #333;
 }
 
@@ -62,6 +55,7 @@
   .search-btn {
     width: 100px;
     display: inline-block;
+    margin-left: 15px;
   }
 }
 
@@ -73,6 +67,7 @@
   width: 80px;
   height: 80px;
 }
+
 .lds-ring div {
   box-sizing: border-box;
   display: block;
@@ -85,15 +80,19 @@
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #e85a4f transparent transparent transparent;
 }
+
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }
+
 .lds-ring div:nth-child(2) {
   animation-delay: -0.3s;
 }
+
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
 }
+
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

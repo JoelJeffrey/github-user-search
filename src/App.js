@@ -12,12 +12,18 @@ function App() {
 
   function handleOnSearch() {
     setError(null)
-    setUserRepos([])
-    setUsername("")
+    // no reason to call api again when users repos are already fetched
+    if (searchValue.toLowerCase() === username.toLowerCase()) {
+      setError("already displaying this user's repositories")
+      return
+    }
+    // using 4 characters because that's githubs minimum username length
     if (searchValue.length < 4) {
       setError("minimum of 4 characters required")
       return
     }
+    setUserRepos([])
+    setUsername("")
     setIsFetching(true)
     // get repos only owned by the searched user, get 100 repos (github api max value)
     fetch(
@@ -39,15 +45,18 @@ function App() {
       .catch((error) => {
         setError(error)
       })
-      .finally(() => setIsFetching(false))
+      .finally(() => {
+        setIsFetching(false)
+        setSearchValue("")
+      })
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Github User Search App</h1>
+        <h1>Github User's Repository App</h1>
       </header>
-      <main className="main">
+      <main>
         <div className="search">
           <input
             className="search-input"

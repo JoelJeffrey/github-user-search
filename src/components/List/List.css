@@ -19,3 +19,9 @@
   color: #e85a4f;
   text-align: center;
 }
+
+.list-empty {
+  text-align: center;
+  display: block;
+  color: #333;
+}
